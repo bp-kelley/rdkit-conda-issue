@@ -6,8 +6,7 @@ package:
   version: {{ environ.get('GIT_DESCRIBE_TAG', 'LOCAL').replace("_", ".").replace("Release.","") }}.{{ environ.get('GIT_DESCRIBE_NUMBER', 0) }}
 
 source:
-  git_url: https://github.com/greglandrum/conda_build_problems.git
-  git_rev: master
+  path: .
  
 build:
   skip: true  # [win and (py27 or py35)]
