@@ -1,0 +1,38 @@
+{% set name = "sbpp" %}
+{% set version = "master" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ environ.get('GIT_DESCRIBE_TAG', 'LOCAL').replace("_", ".").replace("Release.","") }}.{{ environ.get('GIT_DESCRIBE_NUMBER', 0) }}
+
+source:
+  git_url: https://github.com/greglandrum/conda_build_problems.git
+  git_rev: master
+ 
+build:
+  skip: true  # [win and (py27 or py35)]
+  number: 0
+
+requirements:
+  build:
+    - cmake
+    - boost 1.65.*
+    - python
+  run:
+    - boost 1.65.*
+    - python
+
+test:
+  imports:
+    - rdkit
+    - rdkit.rdBase
+
+about:
+  home: http://rdkit.org
+  license: BSD 3-Clause
+  license_file: license.txt
+  summary: 'RDKit is a collection of cheminformatics and machine-learning software written in C++ and Python.'
+
+extra:
+  recipe-maintainers:
+    - greglandrum
